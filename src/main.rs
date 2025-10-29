@@ -23,9 +23,10 @@ fn path_dne_screen(cursive_root: &mut Cursive) {
         Dialog::around(
             TextView::new("Vault Path Not Found. \n Open obsidian blank?"))
             .title("ObsiLogin: Path Not Found")
-            .button("Open blank", |_| open_obsidian()));
+            .button("Open blank", |_| open_obsidian())
+            .button("Quit", |s| s.quit()));
 }
-
+ 
 fn open_obsidian() {
-    Command::new("obsidian");
+    Command::new("obsidian").spawn().expect("failed to launch obsidian");
 }
